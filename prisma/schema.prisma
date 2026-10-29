@@ -1,0 +1,13 @@
+// Schema da base de dados SPCir (MySQL / MariaDB)
+// Fase 2: modelos (Banner, Destaque, Noticia, Evento, Capitulo, Nucleo, Pessoa,
+// Publicacao, Curso, Inscricao, Pagina, Socio, Quota, Utilizador, ...)
+// — os tipos em src/lib/types.ts servem de ponto de partida.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
