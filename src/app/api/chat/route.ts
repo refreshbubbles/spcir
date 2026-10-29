@@ -10,10 +10,11 @@ const model = process.env.CHAT_MODEL ?? "claude-opus-5-5";
 const requestSchema = z.object({
   messages: z
     .array(
-      z.object({
-        role: z.enum(["user", "assistant"]),
-        content: z.string().trim().min(1).max(chatLimits.messageLength),
-      }),
+      // O limite de tamanho é para as perguntas; as respostas anteriores do assistente podem ser mais longas.
+      z.discriminatedUnion("role", [
+        z.object({ role: z.literal("user"), content: z.string().trim().min(1).max(chatLimits.messageLength) }),
+        z.object({ role: z.literal("assistant"), content: z.string().trim().min(1).max(chatLimits.answerLength) }),
+      ]),
     )
     .min(1)
     .max(chatLimits.messages)

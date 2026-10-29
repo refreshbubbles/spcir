@@ -1,7 +1,7 @@
 /** Contrato entre o widget do assistente e o POST /api/chat (sem dependências, para o bundle do cliente). */
 
 /** Limites da conversa (protegem o custo e o endpoint público). */
-export const chatLimits = { messages: 20, messageLength: 1500 } as const;
+export const chatLimits = { messages: 20, messageLength: 1500, answerLength: 20_000 } as const;
 
 /** Histórico enviado no pedido: só texto, a começar e a acabar numa mensagem do utilizador. */
 export type ChatMessage = { role: "user" | "assistant"; content: string };
